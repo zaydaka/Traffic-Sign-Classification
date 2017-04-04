@@ -27,9 +27,9 @@ The goals / steps of this project are the following:
 [image7]: ./writeup_images/traffic_1.jpg "Traffic Image 1"
 [image8]: ./writeup_images/traffic_2.jpg "Traffic Image 2"
 [image9]: ./writeup_images/traffic_3.jpg "Traffic Image 3"
-[image10]: ./writeup_images/traffic_4 "Traffic Image 4"
-[image11]: ./writeup_images/traffic_5 "Traffic Image 5"
-[image12]: ./writeup_images/traffic_6 "Traffic Image 6"
+[image10]: ./writeup_images/traffic_4.jpg "Traffic Image 4"
+[image11]: ./writeup_images/traffic_5.jpg "Traffic Image 5"
+[image12]: ./writeup_images/traffic_6.jpg "Traffic Image 6"
 [image13]: ./writeup_images/vis.jpg "Conv-1 Feature Map"
 
 
@@ -98,7 +98,7 @@ As described in Section 1, the data set was split into 34799 training images and
 
 The network architecture is coded in the fifth code cell of the IPython notebook.  The architecture design used the LeNet network as a starting point. The figure below graphically shows the network architecture.
 
-![alt text][image5]
+![alt text][image6]
 
 * The initial 32x32x1 preprocessed image first passes through a convolution layer consisting of 20 5x5 kernel filters followed by a ReLu activation function and a max pooling down sampling operation.
 * The second convolutional layer consisted of 40 5x5 kernel filters followed by a ReLu activation function and max pooling down sampling.  The output is a 5x5x40 tensor.
