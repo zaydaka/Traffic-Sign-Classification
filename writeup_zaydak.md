@@ -47,7 +47,7 @@ The following files are included:
 * writeup_images/ (images for this write-up)
 
 
-###1. Data Set Summary & Exploration
+### 1. Data Set Summary & Exploration
 
 The German Traffic Sign data was broken into three subsets:
 
@@ -70,9 +70,9 @@ The following figure shows the distributions of the classes for both the trainin
 
 
 
-###2.Design and Test a Model Architecture
+### 2.Design and Test a Model Architecture
 
-####2.1 Preprocessing
+#### 2.1 Preprocessing
 
 Image preprocessing code can be found in the fourth code cell of the IPython notebook and includes the following steps:
 
@@ -89,12 +89,12 @@ Grayscale conversion was done using tf.image.rgb_to_grayscale function.  Gaussia
 The actual execution of this part of the Tensorflow graph was in the IPython notebook code cell 8.
 
 
-####2.2 Data Set Build Up
+#### 2.2 Data Set Build Up
 
 As described in Section 1, the data set was split into 34799 training images and 4410 validation images.  Both had a similar distribution of classes.  The data sets were pre-split into these two sets however were shuffled at the start of the training and before each epoch.  Additional data was not added to the data set nor was any image augmentation used to expand the data set.  It is however expected that performance would have been improved had small random rotations and other affine projections of the images had been used to expand the data set.
 
 
-###3. Network Architecture
+### 3. Network Architecture
 
 The network architecture is coded in the fifth code cell of the IPython notebook.  The architecture design used the LeNet network as a starting point. The figure below graphically shows the network architecture.
 
@@ -109,14 +109,14 @@ The network architecture is coded in the fifth code cell of the IPython notebook
 The 5x5 kernel filters all used 1x1x1x1 strides, similar to that of the LeNet network.  The second convolution layer expanded from LeNet which provided better validation results.  To compensate for the lager number of outputs of the second convolution layer, the fully connected layers of the original network were also expanded.
 
 
-####4. Training
+#### 4. Training
 
 Network training code is located in IPython notebook code cells 9 and 10.  Then network output is a 43x1 vector of logits.  The chosen loss function is the softmax cross entropy between the logits and the training labels (which are encoded a one hot vector).  The training optimizer algorithm was chosen to be the Adam algorithm.  Reading literature and from trial-and-error this seemed to be a good approach.
 
 Training was computed using a NVidia GTX 1080 GPU which could finish each epoch in less than a second using batch sizes of 128.  Because of the advantage of using a GPU for processing, it was decided to increase the number of epochs to 20 and prevent over fitting using a dropout operation after each layer with a 40% chance of dropout and a small learning rate of 0.001.  The training data was shuffled each epoch and the accuracy of the validation classification was outputted.
 
 
-####5. Results
+#### 5. Results
 
 The code for calculating the accuracy of the model is located in the ninth cell of the IPython notebook.
 
@@ -128,7 +128,7 @@ My final model results were:
 As discussed above, the starting architecture was based on the LeNet classifier with the exception of the preprocessing operations.  This is a good starting point because the LeNet network performs well on the MNIST data set.  For most image classification problems a convolution network is a good approach since it preserves some spatial information in the data.  For the most part, a trial and error approach was taken to adjust the network and it was found that expanding the layers to include more nodes (in the fully connected layers) and more kernel filters (in the convolution layers) improved the model.  This is expected as there are more classes in the German traffic sign data set compared to the MNIST data set.  Image preprocessing decisions seemed to have a higher impact on the validation accuracy than network architecture changes.  The final network performed better on the training set than the validation set.  This is expected however the training accuracy was about 3% better than validation indicating that the network could be slightly over fitting to the data despite using dropout.
 
 
-###Test a Model on New Images
+### Test a Model on New Images
 
 Six German traffic signs were found on the internet.  The images were downloaded and cropped into 32x32 RGB color images.  In general, the image quality of these images is far better than the training images.  The edges are sharper and the colors are brighter.  The preprocessing standardization and blurring helps bring these images closer to what the network expects.
 
