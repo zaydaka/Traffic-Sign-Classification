@@ -18,9 +18,9 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./writeup_images/train_image1.jpg "Training Image 1"
-[image2]: ./writeup_images/train_image2.jpg "Training Image 2"
-[image3]: ./writeup_images/train_image3.jpg "Training Image 3"
+[image1]: ./writeup_images/train_image_1.jpg "Training Image 1"
+[image2]: ./writeup_images/train_image_2.jpg "Training Image 2"
+[image3]: ./writeup_images/train_image_3.jpg "Training Image 3"
 [image4]: ./writeup_images/training_hist.jpg "Testing Class Distribution"
 [image5]: ./writeup_images/validation_hist.jpg "Validation Class Distribution"
 [image6]: ./writeup_images/network_architecture.jpg "Network Architecture"
