@@ -23,7 +23,7 @@ The goals / steps of this project are the following:
 [image3]: ./writeup_images/train_image_3.jpg "Training Image 3"
 [image4]: ./writeup_images/training_hist.jpg "Testing Class Distribution"
 [image5]: ./writeup_images/validation_hist.jpg "Validation Class Distribution"
-[image6]: ./writeup_images/network_architecture.jpg "Network Architecture"
+[image6]: ./writeup_images/network_architecture.JPG "Network Architecture"
 [image7]: ./writeup_images/traffic_1.jpg "Traffic Image 1"
 [image8]: ./writeup_images/traffic_2.jpg "Traffic Image 2"
 [image9]: ./writeup_images/traffic_3.jpg "Traffic Image 3"
