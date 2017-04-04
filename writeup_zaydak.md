@@ -63,7 +63,7 @@ In this data set there are 43 different classes (labels) of images.  Each image 
 ![alt text][image2]
 ![alt text][image3]
 
-The following figure shows the distributions of the classes for both the training and validation data sets.  It is interesting to note that the distributions are nearly identical between the two.  This is by design and shows that the validation set is a good representation of the training data set.  That being said, classes within these subsets are not equally represented.  For example, class 43 representing X, has around 250 examples where classes have close to 2000.
+The following figure shows the distributions of the classes for both the training and validation data sets.  It is interesting to note that the distributions are nearly identical between the two.  This is by design and shows that the validation set is a good representation of the training data set.  That being said, classes within these subsets are not equally represented.  For example, class 42 representing 'End fo no passing' signs, has around 250 examples where classes have close to 2000.
 
 ![alt text][image4]
 ![alt text][image5]
@@ -82,7 +82,7 @@ Image preprocessing code can be found in the fourth code cell of the IPython not
 
 Grayscale conversion was used because it seemed to improve image classification.  Although some of the color information is destroyed in this process, I believe that it helps create a color invariance that prevents misclassification of images that are shadows and other color distortions.  Although most of the images in the training data already are somewhat blurry, performing Gaussian blurring helped remove high frequency information in the images and seemed to slightly help training.  Finally, image standardization was performed on the images to give them a zero mean and unity norm.
 
-The preprocessing steps were implemented to operations on the Tensorflow graph for fast computation.
+The preprocessing steps were implemented as operations on the Tensorflow graph for fast computation.
 
 Grayscale conversion was done using tf.image.rgb_to_grayscale function.  Gaussian blurring was done by using the tf.nn.conv2d with a constant 3x3 kernel that represents the Gaussian. Finally, tf.map_fn was used to batch map the tf.image.per_image_standardization function to each image in the data set.
 
@@ -91,7 +91,7 @@ The actual execution of this part of the Tensorflow graph was in the IPython not
 
 #### 2.2 Data Set Build Up
 
-As described in Section 1, the data set was split into 34799 training images and 4410 validation images.  Both had a similar distribution of classes.  The data sets were pre-split into these two sets however were shuffled at the start of the training and before each epoch.  Additional data was not added to the data set nor was any image augmentation used to expand the data set.  It is however expected that performance would have been improved had small random rotations and other affine projections of the images had been used to expand the data set.
+As described in Section 1, the data set was split into 34799 training images and 4410 validation images.  Both had a similar distribution of classes.  The data sets were pre-split into these two sets however were shuffled at the start of the training and before each epoch.  Additional data was not added to the data set nor was any image augmentation used to expand the data set.  It is expected that performance would have been improved had small random rotations and other affine projections of the images had been used to expand the data set.
 
 
 ### 3. Network Architecture
@@ -102,7 +102,7 @@ The network architecture is coded in the fifth code cell of the IPython notebook
 
 * The initial 32x32x1 preprocessed image first passes through a convolution layer consisting of 20 5x5 kernel filters followed by a ReLu activation function and a max pooling down sampling operation.
 * The second convolutional layer consisted of 40 5x5 kernel filters followed by a ReLu activation function and max pooling down sampling.  The output is a 5x5x40 tensor.
-* Next, the tensor was flattened to a 1000x1 vector and passed through a full connected layer with a ReLu activation function.  This layer outputs a 400x1 vector.
+* Next, the tensor was flattened to a 1000x1 vector and passed through a fullyas  connected layer with a ReLu activation function.  This layer outputs a 400x1 vector.
 * Another fully connected layer and ReLu activation function compresses the information down to a 100x1 vector.
 * Finally, a fully connected layer outputs a 43x1 vector of logits.
 
@@ -125,7 +125,7 @@ My final model results were:
 * Validation set accuracy of 96.8%
 * Test set accuracy of 95.1%
 
-As discussed above, the starting architecture was based on the LeNet classifier with the exception of the preprocessing operations.  This is a good starting point because the LeNet network performs well on the MNIST data set.  For most image classification problems a convolution network is a good approach since it preserves some spatial information in the data.  For the most part, a trial and error approach was taken to adjust the network and it was found that expanding the layers to include more nodes (in the fully connected layers) and more kernel filters (in the convolution layers) improved the model.  This is expected as there are more classes in the German traffic sign data set compared to the MNIST data set.  Image preprocessing decisions seemed to have a higher impact on the validation accuracy than network architecture changes.  The final network performed better on the training set than the validation set.  This is expected however the training accuracy was about 3% better than validation indicating that the network could be slightly over fitting to the data despite using dropout.
+As discussed above, the starting architecture was based on the LeNet classifier with the exception of the preprocessing operations.  This is a good starting point because the LeNet network performs well on the MNIST data set.  For most image classification problems a convolution network is a good approach since it preserves some spatial information in the data.  For the most part, a trial and error approach was taken to adjust the network.  It was found that expanding the layers to include more nodes (in the fully connected layers) and more kernel filters (in the convolution layers) improved the model.  This is expected as there are more classes in the German traffic sign data set compared to the MNIST data set.  Image preprocessing decisions seemed to have a higher impact on the validation accuracy than network architecture changes.  The final network performed better on the training set than the validation set.  This is expected however the training accuracy was about 3% better than validation indicating that the network could be slightly over fitting to the data despite using dropout.
 
 
 ### Test a Model on New Images
@@ -135,7 +135,7 @@ Six German traffic signs were found on the internet.  The images were downloaded
 
 ![alt text][image7] ![alt text][image8] ![alt text][image9] ![alt text][image10] ![alt text][image11] ![alt text][image12] 
 
-The pedestrian image is much darker than the others and the road work image has a very structured background therefore if might be expected that these may be misclassified by the network.
+The pedestrian image is much darker than the others and the road work image has a very structured background therefore it may be expected that these could be misclassified by the network.
 
 The network, however, correctly classified all six of the images except for the pedestrian image as seen in code block thirteen.  After further investigation, the network may have had trouble with this image because of the skewness of the image.  Data augmentation during the training process to expand that data set might aid the network in cases such as this.
 
