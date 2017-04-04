@@ -1,6 +1,6 @@
-#**Traffic Sign Recognition** 
+# **Traffic Sign Recognition** 
 
-##Andrew Zaydak
+## Andrew Zaydak
 
 ---
 
